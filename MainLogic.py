@@ -4,14 +4,16 @@ from PyQt5.QtWidgets import QApplication,QMainWindow
 from MainView import MainUIView
 import sys
 
-class MainLogic(QMainWindow,MainUIView):
+
+class MainLogic(QMainWindow, MainUIView):
     def __init__(self):
         super(MainLogic, self).__init__()
         self.setupUi(self)
-        self.commandLinkButton.clicked.connect(self.hello)
+        self.searching.clicked.connect(self.hello)
 
     def hello(self):
         print("hello")
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
