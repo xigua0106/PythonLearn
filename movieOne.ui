@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>430</width>
-    <height>421</height>
+    <width>440</width>
+    <height>452</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -19,13 +19,13 @@
   <property name="windowTitle">
    <string>MovieOne</string>
   </property>
-  <widget class="QGroupBox" name="groupBox">
+  <widget class="QGroupBox" name="group1">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
      <width>411</width>
-     <height>401</height>
+     <height>301</height>
     </rect>
    </property>
    <property name="font">
@@ -46,23 +46,13 @@
    <property name="checkable">
     <bool>false</bool>
    </property>
-   <widget class="QTextBrowser" name="textBrowser">
+   <widget class="QLabel" name="labelTips">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>60</y>
-      <width>391</width>
-      <height>192</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>30</y>
+      <y>55</y>
       <width>211</width>
-      <height>16</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
@@ -74,12 +64,12 @@
      <string>请输入您需要的电影:</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="lineEditInput">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>20</y>
-      <width>241</width>
+      <x>170</x>
+      <y>50</y>
+      <width>231</width>
       <height>31</height>
      </rect>
     </property>
@@ -92,24 +82,24 @@
      <string/>
     </property>
    </widget>
-   <widget class="QCommandLinkButton" name="commandLinkButton">
+   <widget class="QCommandLinkButton" name="BtnSearching">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>260</y>
-      <width>185</width>
+      <x>270</x>
+      <y>80</y>
+      <width>131</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>CommandLinkButton</string>
+     <string>Seraching</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox">
+   <widget class="QCheckBox" name="checkIsOffline">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>270</y>
+      <y>90</y>
       <width>241</width>
       <height>21</height>
      </rect>
@@ -123,83 +113,39 @@
      <string>是否离线下载到百度网盘</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>300</y>
-      <width>211</width>
-      <height>31</height>
+      <x>10</x>
+      <y>120</y>
+      <width>391</width>
+      <height>171</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+  </widget>
+  <widget class="QGroupBox" name="group2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>320</y>
+     <width>411</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QCheckBox" name="checkIsRecord">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>305</y>
-      <width>91</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>网盘账号：</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>335</y>
-      <width>91</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>网盘密码：</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>330</y>
-      <width>211</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="checkBox_2">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>370</y>
+      <x>30</x>
+      <y>90</y>
       <width>111</width>
       <height>21</height>
      </rect>
@@ -213,13 +159,13 @@
      <string>记住密码</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox_2">
+   <widget class="QLabel" name="labelPassword">
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>299</y>
-      <width>371</width>
-      <height>91</height>
+      <y>55</y>
+      <width>91</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
@@ -227,21 +173,64 @@
       <pointsize>12</pointsize>
      </font>
     </property>
-    <property name="title">
+    <property name="text">
+     <string>网盘密码：</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEditAccount">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>10</y>
+      <width>281</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
      <string/>
     </property>
    </widget>
-   <zorder>textBrowser</zorder>
-   <zorder>label</zorder>
-   <zorder>lineEdit</zorder>
-   <zorder>commandLinkButton</zorder>
-   <zorder>checkBox</zorder>
-   <zorder>lineEdit_2</zorder>
-   <zorder>label_2</zorder>
-   <zorder>label_3</zorder>
-   <zorder>lineEdit_3</zorder>
-   <zorder>groupBox_2</zorder>
-   <zorder>checkBox_2</zorder>
+   <widget class="QLineEdit" name="lineEditPassword">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>50</y>
+      <width>281</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelAccount">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>15</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>网盘账号：</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
