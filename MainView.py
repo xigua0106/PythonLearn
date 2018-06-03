@@ -130,8 +130,8 @@ class MainUIView(object):
         self.tableLinks.setColumnCount(2)
         self.tableLinks.setRowCount(len(table))
         self.tableLinks.setHorizontalHeaderLabels(['电影名称', '双击链接'])
-        self.tableLinks.setColumnWidth(1, 400)
-        # self.tableLinks.resizeColumnsToContents()
+        # self.tableLinks.setColumnWidth(1, 400)
+        # self.tableLinks.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         count = 0
         for name, url in table.items():
             # print(name, url, end=' ')
@@ -145,9 +145,11 @@ class MainUIView(object):
         print("Test")
 
     def Weather(self):
-        print("Weather")
         forecast, pos_info = Weather().GetWeather()
-        print(forecast, pos_info )
+        print(forecast, pos_info)
+        self.tableLinks.clearContents()
+        for data in forecast:
+            self.SetTableData(data)
 
 
 
