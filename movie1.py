@@ -16,7 +16,7 @@ class MovieSpider(object):
         self.search_key = "http://www.chapaofan.com/search/"
 
     # 负责获取html页面
-    def get_html(self, key):
+    def get_html(self, url):
         header = {
             "User-Agent":
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0",
@@ -27,8 +27,7 @@ class MovieSpider(object):
             "Accept-Encoding":
                 "gzip, deflate",
         }
-        url = self.search_key + key
-        html = requests.get(url, headers=header).text
+        html = requests.get(url, headers=header, timeout=5).text
         return html
 
     # 负责获得搜索结果
@@ -77,12 +76,17 @@ class MovieSpider(object):
         html = self.get_html(url)
         soup = BeautifulSoup(html, "lxml")
         download_urls = soup.select(".download-list > ul > li > a")
+        links = {}
         for link in download_urls:
-            print(link.text.replace(" ", ""), link['href'])
-            # 保存链接就好便于读取，名字先不保存
+            # print(link.text.replace(" ", ""), link['href'])
+            name = link.text.replace(" ", "")
+            ed2k = link['href']
+            links[name] = ed2k
+        return links
+        # 保存链接就好便于读取，名字先不保存
             # self.save(link.text.replace(" ", ""))
-            self.save(link['href'])
-        self.line()
+            # self.save(link['href'])
+        # self.line()
 
     # 输出
     def printf(self, data_li, prefix=""):

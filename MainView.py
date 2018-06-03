@@ -4,8 +4,8 @@
 #
 # Created by: PyQt5 UI code generator 5.10.1
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QHBoxLayout,QAction
-
+from Learn.Weather.WeatherTool import Weather
+from PyQt5.QtWidgets import *
 
 
 
@@ -14,15 +14,17 @@ class MainUIView(object):
     # UI属性方法
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(440, 452)
+        Dialog.resize(410, 500)
         Dialog.setMinimumSize(QtCore.QSize(430, 0))
         # 菜单
-        self.addMenu = self.menuBar().addMenu("&添加")
-        # self.addMenu.addAction(self.TestAct)
-        # self.TestAct = QAction("&Test", self, triggered=self.Test)
+        self.addMenu = self.menuBar().addMenu("&File")
+        self.addMenu.addAction(QAction("&None", self, triggered=self.Test))
+        self.addMenu = self.menuBar().addMenu("&Tools")
+        self.addMenu.addAction(QAction("&Weather", self, triggered=self.Weather))
+
         # group1
         self.group1 = QtWidgets.QGroupBox(Dialog)
-        self.group1.setGeometry(QtCore.QRect(10, 10, 411, 301))
+        self.group1.setGeometry(QtCore.QRect(10, 30, 400, 300))
         font = QtGui.QFont()
         font.setFamily("Calibri")
         font.setPointSize(15)
@@ -59,12 +61,12 @@ class MainUIView(object):
         self.checkIsOffline.setObjectName("checkIsOffline")
         # 内容框
         self.tableLinks = QtWidgets.QTableWidget(self.group1)
-        self.tableLinks.setGeometry(QtCore.QRect(10, 121, 391, 171))
+        self.tableLinks.setGeometry(QtCore.QRect(10, 125, 390, 171))
         self.tableLinks.setObjectName("tableWidget")
         # self.tableWidget.setRowCount(2)
 
         self.group2 = QtWidgets.QGroupBox(Dialog)
-        self.group2.setGeometry(QtCore.QRect(10, 320, 411, 121))
+        self.group2.setGeometry(QtCore.QRect(10, 320, 500, 120))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.group2.setFont(font)
@@ -122,6 +124,31 @@ class MainUIView(object):
         self.checkIsRecord.setText(_translate("Dialog", "记住密码"))
         self.labelPassword.setText(_translate("Dialog", "网盘密码："))
         self.labelAccount.setText(_translate("Dialog", "网盘账号："))
+
+    def SetTableData(self, table):
+        self.tableLinks.clearContents()
+        self.tableLinks.setColumnCount(2)
+        self.tableLinks.setRowCount(len(table))
+        self.tableLinks.setHorizontalHeaderLabels(['电影名称', '双击链接'])
+        self.tableLinks.setColumnWidth(1, 400)
+        # self.tableLinks.resizeColumnsToContents()
+        count = 0
+        for name, url in table.items():
+            # print(name, url, end=' ')
+            name_item = QTableWidgetItem(name)
+            url_item = QTableWidgetItem(url)
+            self.tableLinks.setItem(0, count * 2, name_item)
+            self.tableLinks.setItem(0, count * 2 + 1, url_item)
+            count += 1
+
+    def Test(self):
+        print("Test")
+
+    def Weather(self):
+        print("Weather")
+        forecast, pos_info = Weather().GetWeather()
+        print(forecast, pos_info )
+
 
 
 
