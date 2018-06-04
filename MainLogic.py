@@ -33,7 +33,9 @@ class MainLogic(QMainWindow, MainUIView):
             self.SetTableData(results)
 
         except Exception as e:
-            print("[Error]", str(e))
+ 3
+
+print("[Error]", str(e))
 
 
     def itemDoubleClicked(self):
