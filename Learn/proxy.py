@@ -21,7 +21,7 @@ def use_proxy(proxy_addr,url):
 def get_proxy_ip():
     ip_address1 = 'http://api.xicidaili.com/free2016.txt'
     ipAddr2 = 'http://www.goubanjia.com/'
-    req = request.Request(ip_address1, headers=header, )
+    req = request.Request(ip_address1, headers=header)
     try:
         response = request.urlopen(req)
         print(response.read())

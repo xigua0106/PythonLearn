@@ -1,8 +1,6 @@
 # 界面与逻辑分离
 # 用来写事件响应 导入界面文件的类
 from PyQt5.QtWidgets import *
-# from PyQt5.QtGui import QStandardItemModel, QStandardItem
-# from PyQt5.QtCore import QString
 from MainView import MainUIView
 from movie1 import MovieSpider
 import sys
@@ -31,12 +29,8 @@ class MainLogic(QMainWindow, MainUIView):
             html = spider.get_html(self.search_key + movie_name)
             results = spider.get_urls(html)
             self.SetTableData(results)
-
         except Exception as e:
- 3
-
-print("[Error]", str(e))
-
+            print("[Error]", str(e))
 
     def itemDoubleClicked(self):
         spider = MovieSpider()
@@ -49,10 +43,6 @@ print("[Error]", str(e))
         except Exception as e:
             print("[Error]", str(e))
 
-
-
-        # def test(self):
-        #     print("test")
 
 if __name__ == '__main__':
     # 所有的PyQt5应用必须创建一个应用（Application）对象。
