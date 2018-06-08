@@ -49,7 +49,7 @@ class MovieSpider(object):
     # 负责储存数据
     def save(self, data):
         # 将爬取的网页保存在本地
-        file = open("./spoils/1.text", "a", encoding='utf-8')
+        file = open("./1.text", "a", encoding='utf-8')
         file.write(data)
         file.write("\n")
         file.close()
@@ -126,7 +126,7 @@ class MovieSpider(object):
         # 定义post的地址
         url = 'http://pan.baidu.com/rest/2.0/services/cloud_dl?bdstoken='+bdstoken+'&bdstoken='+bdstoken + \
               '&channel=chunlei&clienttype=0&web=1&app_id=250528'
-        with open("./spoils/1.text", 'r', encoding='utf-8') as file:
+        with open("./1.text", 'r', encoding='utf-8') as file:
             link_list = file.readlines()
             file.close()
         for link in link_list:
