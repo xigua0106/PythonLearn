@@ -100,19 +100,19 @@ class MovieSpider(object):
         #######################
         # 配置
         # token 看下面说明 TODO 自动获取
-        bdstoken = "13dff2869b62e4606240144181b217a3"
+        bdstoken = "517cd5016f4d99501be2f94cfd48ef4a"
         # 资源地址列表
         link_list = []
         # 保存路径(相对路径,不懂的问度娘) TODO 自动获取
         save_path = "/"
         # cookie    TODO 自动获取
-        cookie = "BAIDUID=AD550F652550E7FD287F236DC3582696:FG=1; BIDUPSID=AD550F652550E7FD287F236DC3582696; PSTM=1526172013; PANWEB=1; BDCLND=PsR2w2d8U%2BPU1w13LEhZV0DV1eQfuX%2FtvVc%2Bhqf%2BmlI%3D; H_PS_PSSID=1451_21122_26350; recommendTime=iphone2018-05-23%2016%3A00%3A27; BDUSS=pKMUN6V2VFN3VFRjQzS2FJeFFrRUVPY0JNUnAyZFhVcjJ1eUVudFgxazNZakJiQVFBQUFBJCQAAAAAAAAAAAEAAACp7ckwd2VpYWJjZ2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADfVCFs31QhbRH; STOKEN=41e4c13adf0cafd77e0b53222cefb687c0784050faecea69aabe7f1c1208d578; SCRC=5af71842d46dc63aa7df229a848d5d06; PSINO=6; Hm_lvt_7a3960b6f067eb0085b7f96ff5e660b0=1527000723,1527257435,1527305636,1527404156; Hm_lpvt_7a3960b6f067eb0085b7f96ff5e660b0=1527404156; PANPSC=2201971467534423439%3AMH68bVsDvKLFZqE0OmVcJe8QioVhG8m3cZMkAIaTTbdKu8WyLCLL4ST32p5Ia0%2F2aVPCkJzXiw5YHjpKOJlsJ3DfVjlMrIXXfXOsWjuKC4HJC7GY0XAkr3o5di%2BHtQNNfWXIHU1mXJdjbYml1eowNq7IJzS%2Fi2HLfbZ%2FbYW506b%2ByIluCYs1Wp2Zb97G3%2BgS; cflag=15%3A3"
+        cookie = "BIDUPSID=5E1A644AEC2D3D1423FB8D81048009D5; PSTM=1528299210; BAIDUID=A070DEEF0CBE409DBB0E759001538665:FG=1; H_PS_PSSID=26647_1463_21124_26350_26580; PSINO=6; FP_UID=fd89bbf07f260313ae111f269df1c09c; BDUSS=V1Y0tWaGl1Q2NZSHlWY2w0T2pBNlVzbnQ2d35iajFTejUxaS1VeG9zTWpYa05iQVFBQUFBJCQAAAAAAAAAAAEAAACp7ckwd2VpYWJjZ2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACPRG1sj0RtbM1; pan_login_way=1; PANWEB=1; SCRC=dcce9576a3d2d84adfcec0229fa65280; STOKEN=7b9e2f0bb37f75e7385eb7c93a95924bd9e32bd02c7acb931118d9327ee59626; Hm_lvt_7a3960b6f067eb0085b7f96ff5e660b0=1527405285,1527408338,1527726093,1528549826; cflag=15%3A3; Hm_lpvt_7a3960b6f067eb0085b7f96ff5e660b0=1528549952; PANPSC=13587613381108438901%3AMH68bVsDvKLFZqE0OmVcJe8QioVhG8m3cZMkAIaTTbdKu8WyLCLL4ST32p5Ia0%2F2nWLl7vCMVPBYHjpKOJlsJ3DfVjlMrIXXfXOsWjuKC4HJC7GY0XAkr3o5di%2BHtQNNfWXIHU1mXJdjbYml1eowNq7IJzS%2Fi2HLfbZ%2FbYW506b%2ByIluCYs1Wp2Zb97G3%2BgS"
         # 请求头
         heads = {
             "Host": "pan.baidu.com",
             "Origin": "http://pan.baidu.com",
             "Referer": "https://pan.baidu.com/disk/home?",
-            "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
+            "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.167 Safari/537.36",
             "Cookie": cookie
         }
         # 请求参数
@@ -135,7 +135,7 @@ class MovieSpider(object):
             a = requests.post(url, data=pdata, headers=heads).content
             print(a)
             # 休眠一秒
-            time.sleep(1)
+            time.sleep(2)
         print("success!")
 
     # 主循环
