@@ -20,11 +20,16 @@ class JianShuItem(Item):
     likes = Field()
     money = Field()
 
-# TODO 去重 感觉用得不大对
-class JianShuLoader(ItemLoader):
-    #这里只是重载这个属性，设置为只选取第一个值
+
+class NowCoderItem(Item):
+    question = Field()
+    answer = Field()
+
+
+class DefaultLoader(ItemLoader):
     default_output_processor = TakeFirst() # Join()
     default_input_processor = MapCompose(replace_escape_chars, strip_html5_whitespace)
+    # 这里只是重载这个属性，设置为只选取第一个值
     # likes_in = MapCompose(unicode.title)
     # likes_out = Join()
 

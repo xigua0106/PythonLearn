@@ -6,24 +6,55 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import json
 import pymysql
+from twisted.enterprise import adbapi
+import MySQLdb
+import MySQLdb.cursors
+import codecs
+import json
+from logging import log
+
 #TODO 试一下mongoDB
 class TutorialPipeline(object):
     collection_name = 'scrapy_items'
+
+    # sql = "INSERT INTO `trending` (`title`, `abstract`, `nickname`, `comments`, `likes`, `money`) " \
+    #       "VALUES ('%s', '%s', '%s', '%s', '%s', '%s')" \
+    #       % (item['title'], item['abstract'], item['nickname'], item['comments'], item['likes'], item['money'], )
 
     def __init__(self):
         self._connection = pymysql.connect("localhost", "root", "op90--", "test", charset='utf8')
         # 通过cursor创建游标 当游标建立之时，就自动开始了一个隐形的数据库事务
         self._cursor = self._connection.cursor()
 
+    sql = "INSERT INTO `trending`(name,url) values(%s,%s)"
+
     def process_item(self, item, spider):
         info = dict(item)
-        sql = "INSERT INTO `trending` (`title`, `abstract`, `nickname`, `comments`, `likes`, `money`) " \
-              "VALUES ('%s', '%s', '%s', '%s', '%s', '%s')"\
-              % (item['title'], item['abstract'], item['nickname'], item['comments'], item['likes'], item['money'], )
+
         self._cursor.execute(sql)
         # 提交SQL
         self._connection.commit()
         return item
+
+
+class JsonWithEncodingPipeline(object):
+    # 保存到文件中对应的class
+    #    1、在settings.py文件中配置
+    #    2、在自己实现的爬虫类中yield item,会自动执行
+    def __init__(self):
+        # 保存为json文件
+        self.file = codecs.open('info.json', 'w', encoding='utf-8')
+
+    def process_item(self, item, spider):
+        # 转为json的
+        line = json.dumps(dict(item)) + "\n"
+        # 写入文件中
+        self.file.write(line)
+        return item
+
+    # 爬虫结束时关闭文件
+    def spider_closed(self, spider):
+        self.file.close()
 
 
 # class MysqlTwistedPipline(object):

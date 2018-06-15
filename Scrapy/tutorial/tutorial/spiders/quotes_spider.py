@@ -1,9 +1,7 @@
 import scrapy
-from tutorial.items import JianShuItem,JianShuLoader
+from tutorial.items import JianShuItem,DefaultLoader
 from Helper.NetHelper import header
-from scrapy.spidermiddlewares.httperror import HttpError
-from twisted.internet.error import DNSLookupError
-from twisted.internet.error import TimeoutError, TCPTimedOutError
+
 from scrapy.linkextractors import LinkExtractor
 
 
@@ -17,8 +15,9 @@ class QuotesSpider(scrapy.Spider):
             # 'http://www.w3school.com.cn/html/html_basic.asp'# css 教程
             # 'http://www.w3school.com.cn/cssref/css_selectors.asp'# CSS选择器
             # 简书爬取完毕
-            'https://www.jianshu.com/trending/monthly?utm_medium=index-banner-s&utm_source=desktop'
-            'https://www.jianshu.com/trending/monthly?seen_snote_ids%5B%5D=27876999&seen_snote_ids%5B%5D=28205080&seen_snote_ids%5B%5D=27905908&seen_snote_ids%5B%5D=28339318&seen_snote_ids%5B%5D=28129866&seen_snote_ids%5B%5D=28489189&seen_snote_ids%5B%5D=28083702&seen_snote_ids%5B%5D=27987802&seen_snote_ids%5B%5D=28472820&seen_snote_ids%5B%5D=28199856&seen_snote_ids%5B%5D=28582710&seen_snote_ids%5B%5D=28154153&seen_snote_ids%5B%5D=27823377&seen_snote_ids%5B%5D=28740185&seen_snote_ids%5B%5D=27970767&seen_snote_ids%5B%5D=28372237&seen_snote_ids%5B%5D=28382709&seen_snote_ids%5B%5D=28432321&seen_snote_ids%5B%5D=28238738&seen_snote_ids%5B%5D=28416138&page={}'.format(str(i)) for i in range(2, 5)
+            # 'https://www.jianshu.com/trending/monthly?utm_medium=index-banner-s&utm_source=desktop'
+            # 'https://www.jianshu.com/trending/monthly?seen_snote_ids%5B%5D=27876999&seen_snote_ids%5B%5D=28205080&seen_snote_ids%5B%5D=27905908&seen_snote_ids%5B%5D=28339318&seen_snote_ids%5B%5D=28129866&seen_snote_ids%5B%5D=28489189&seen_snote_ids%5B%5D=28083702&seen_snote_ids%5B%5D=27987802&seen_snote_ids%5B%5D=28472820&seen_snote_ids%5B%5D=28199856&seen_snote_ids%5B%5D=28582710&seen_snote_ids%5B%5D=28154153&seen_snote_ids%5B%5D=27823377&seen_snote_ids%5B%5D=28740185&seen_snote_ids%5B%5D=27970767&seen_snote_ids%5B%5D=28372237&seen_snote_ids%5B%5D=28382709&seen_snote_ids%5B%5D=28432321&seen_snote_ids%5B%5D=28238738&seen_snote_ids%5B%5D=28416138&page={}'.format(str(i)) for i in range(2, 5)
+            'https://www.nowcoder.com/review/2/13/{}'.format(str(i)) for i in range(1, 132)
         ]
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse, headers=header,
@@ -35,7 +34,7 @@ class QuotesSpider(scrapy.Spider):
         list = response.css('ul.note-list>li>div.content')
         print(len(list))
         for info in list:
-            loader = JianShuLoader(item=JianShuItem(), selector=info)
+            loader = DefaultLoader(item=JianShuItem(), selector=info)
             loader.add_css('title', 'a.title::text')
             loader.add_css('abstract', 'p.abstract::text')
             loader.add_css('nickname', 'a.nickname::text')
@@ -81,20 +80,3 @@ class QuotesSpider(scrapy.Spider):
             f.write(response.body)
         self.log('Saved file %s' % filename)
 
-    # 异常处理
-    def ErrorHandler(self, failure):
-        self.logger.error(repr(failure))
-
-        if failure.check(HttpError):
-            response = failure.value.response
-            self.logger.error('HttpError on %s', response.url)
-
-        elif failure.check(DNSLookupError):
-            request = failure.request
-            self.logger.error('DNSLookupError on %s', request.url)
-
-        elif failure.check(TimeoutError, TCPTimedOutError):
-            request = failure.request
-            self.logger.error('TimeoutError on %s', request.url)
-        else:
-            self.logger.error(failure.request.url)

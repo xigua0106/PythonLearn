@@ -1,7 +1,8 @@
 from scrapy.cmdline import execute
 
 # 执行爬虫
-execute('scrapy crawl quotes'.split())
+# execute('scrapy crawl quotes'.split())
+execute('scrapy crawl nowcoder'.split())
 
 # 输出json文件
 # execute(['scrapy', 'crawl', 'quotes', '-o', 'quotes.json'])
