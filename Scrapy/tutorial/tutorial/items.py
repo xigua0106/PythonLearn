@@ -27,7 +27,7 @@ class NowCoderItem(Item):
 
 
 class DefaultLoader(ItemLoader):
-    default_output_processor = TakeFirst() # Join()
+    default_output_processor = TakeFirst()
     default_input_processor = MapCompose(replace_escape_chars, strip_html5_whitespace)
     # 这里只是重载这个属性，设置为只选取第一个值
     # likes_in = MapCompose(unicode.title)

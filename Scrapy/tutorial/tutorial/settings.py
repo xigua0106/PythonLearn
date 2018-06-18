@@ -27,7 +27,8 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 3
+# 怂的时候开
+# DOWNLOAD_DELAY = 1
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -99,9 +100,10 @@ HTTPCACHE_IGNORE_HTTP_CODES = []
 HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 #Mysql数据库的配置信息
-MYSQL_HOST = '127.0.0.1'
-MYSQL_DBNAME = 'test'
+MYSQL_HOST = 'localhost'
+MYSQL_DB_NAME = 'test1'
 MYSQL_USER = 'root'
-MYSQL_PASSWD = '123456'
+MYSQL_PASSWORD = 'op90--'
+charset = 'utf8'
 
 MYSQL_PORT = 3306

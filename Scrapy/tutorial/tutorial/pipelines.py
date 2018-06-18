@@ -4,16 +4,17 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
+
 import json
 import pymysql
 from twisted.enterprise import adbapi
-import MySQLdb
-import MySQLdb.cursors
 import codecs
 import json
 from logging import log
+from Helper.DBHelper import DBHelper
 
-#TODO 试一下mongoDB
+
+# TODO 试一下mongoDB
 class TutorialPipeline(object):
     collection_name = 'scrapy_items'
 
@@ -22,18 +23,15 @@ class TutorialPipeline(object):
     #       % (item['title'], item['abstract'], item['nickname'], item['comments'], item['likes'], item['money'], )
 
     def __init__(self):
-        self._connection = pymysql.connect("localhost", "root", "op90--", "test", charset='utf8')
+        self.dbHelper = DBHelper()
+        # self._connection = pymysql.connect("localhost", "root", "op90--", "test", charset='utf8')
         # 通过cursor创建游标 当游标建立之时，就自动开始了一个隐形的数据库事务
-        self._cursor = self._connection.cursor()
-
-    sql = "INSERT INTO `trending`(name,url) values(%s,%s)"
+        # self._cursor = self._connection.cursor()
 
     def process_item(self, item, spider):
-        info = dict(item)
-
-        self._cursor.execute(sql)
-        # 提交SQL
-        self._connection.commit()
+        sql = "INSERT INTO `NowCoder`(question,answer) values(%s,%s)"
+        #  *表示拆分元组，调用insert（*params）会重组成元组
+        self.dbHelper.insert(sql, item['question'], item['answer'])
         return item
 
 
