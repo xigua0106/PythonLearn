@@ -26,6 +26,14 @@ class NowCoderItem(Item):
     answer = Field()
 
 
+class JobsItem(Item):
+    title = Field()
+    company = Field()
+    location = Field()
+    money = Field()
+    time = Field()
+
+# 默认下载器
 class DefaultLoader(ItemLoader):
     default_output_processor = TakeFirst()
     default_input_processor = MapCompose(replace_escape_chars, strip_html5_whitespace)
