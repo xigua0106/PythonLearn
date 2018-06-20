@@ -28,14 +28,16 @@ ROBOTSTXT_OBEY = False
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
 # 怂的时候开
-DOWNLOAD_DELAY = 1
+DOWNLOAD_DELAY = 0.5
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
+# 是否启用cookiesmiddleware。如果关闭，cookies将不会发送给web server。
 COOKIES_ENABLED = True
-
+# 如果启用，Scrapy将记录所有在request(cookie 请求头)发送的cookies及response接收到的cookies（set-cookie接收头）
+# COOKIES_DEBUG = True
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
 
@@ -93,11 +95,11 @@ ITEM_PIPELINES = {
 # Enable and configure HTTP caching (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
 # 缓存
-HTTPCACHE_ENABLED = True
-HTTPCACHE_EXPIRATION_SECS = 0
-HTTPCACHE_DIR = 'httpcache'
-HTTPCACHE_IGNORE_HTTP_CODES = []
-HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+# HTTPCACHE_ENABLED = True
+# HTTPCACHE_EXPIRATION_SECS = 0
+# HTTPCACHE_DIR = 'httpcache'
+# HTTPCACHE_IGNORE_HTTP_CODES = []
+# HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 #Mysql数据库的配置信息
 MYSQL_HOST = 'localhost'
