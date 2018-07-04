@@ -1,23 +1,10 @@
+import itchat,time,xlwt
+#自动登录 -- 命令行二维码
+itchat.auto_login(hotReload=True, enableCmdQR=True)
+itchat.dump_login_status()
 
-import pymysql
-create_table_sql = """\
-    CREATE TABLE trending
-    (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        title VARCHAR(255) NOT NULL ,
-        abstract VARCHAR(255) NOT NULL ,
-        nickname VARCHAR(255) NOT NULL,
-        comments VARCHAR(255) NOT NULL,
-        likes VARCHAR(255) NOT NULL,
-        money VARCHAR(255) NOT NULL
-    )
-    """
+subscription = itchat.get_mps(update=True)
+subscription1 = itchat.search_mps(name='Wowpaper')
 
-con = pymysql.connect("localhost", "root", "op90--", "test", charset='utf8')
-with con:
-    cur = con.cursor()
-    cur.execute(create_table_sql)
-    rows = cur.fetchall()
-    for row in rows:
-        print(row)
-
+print(subscription)
+print(subscription1)
