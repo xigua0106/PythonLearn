@@ -121,4 +121,4 @@ intro_raw = tree.xpath('//span[@id="intro_display"]/text()')
 for i in intro_raw:
     intro = i.encode('utf-8')
 
-print intro #妹子的签名就显示在屏幕上啦
+print (intro) #妹子的签名就显示在屏幕上啦
